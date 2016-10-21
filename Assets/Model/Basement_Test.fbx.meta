@@ -1,0 +1,270 @@
+fileFormatVersion: 2
+guid: 7974b1acac81846438c4dae3009bc45b
+timeCreated: 1477072037
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Basement_Ceiling
+    100002: //RootNode
+    100004: Floor_Bracket
+    100006: Floor_Bracket 1
+    100008: Floor_Bracket1
+    100010: Floor_Bracket1 1
+    100012: Floor_Bracket10
+    100014: Floor_Bracket10 1
+    100016: Floor_Bracket2
+    100018: Floor_Bracket2 1
+    100020: Floor_Bracket3
+    100022: Floor_Bracket3 1
+    100024: Floor_Bracket4
+    100026: Floor_Bracket4 1
+    100028: Floor_Bracket5
+    100030: Floor_Bracket5 1
+    100032: Floor_Bracket6
+    100034: Floor_Bracket6 1
+    100036: Floor_Bracket7
+    100038: Floor_Bracket7 1
+    100040: Floor_Bracket8
+    100042: Floor_Bracket8 1
+    100044: Floor_Bracket9
+    100046: Floor_Bracket9 1
+    100048: Floor_Support_Brackets_1
+    100050: Floor_Support_Brackets_2
+    100052: Floor_Supports
+    100054: Floor_Supports12
+    100056: Floor_Supports13
+    100058: Floor_Supports14
+    100060: Floor_Supports15
+    100062: Floor_Supports16
+    100064: Floor_Supports17
+    100066: Floor_Supports18
+    100068: Floor_Supports19
+    100070: Floor_Supports20
+    100072: Floor_Supports21
+    100074: Floor_Supports22
+    100076: Floor_Supports_Horizontal
+    100078: Floor_Supports_Horizontal1
+    100080: Lab_Ceiling
+    100082: Rooms
+    400000: Basement_Ceiling
+    400002: //RootNode
+    400004: Floor_Bracket
+    400006: Floor_Bracket 1
+    400008: Floor_Bracket1
+    400010: Floor_Bracket1 1
+    400012: Floor_Bracket10
+    400014: Floor_Bracket10 1
+    400016: Floor_Bracket2
+    400018: Floor_Bracket2 1
+    400020: Floor_Bracket3
+    400022: Floor_Bracket3 1
+    400024: Floor_Bracket4
+    400026: Floor_Bracket4 1
+    400028: Floor_Bracket5
+    400030: Floor_Bracket5 1
+    400032: Floor_Bracket6
+    400034: Floor_Bracket6 1
+    400036: Floor_Bracket7
+    400038: Floor_Bracket7 1
+    400040: Floor_Bracket8
+    400042: Floor_Bracket8 1
+    400044: Floor_Bracket9
+    400046: Floor_Bracket9 1
+    400048: Floor_Support_Brackets_1
+    400050: Floor_Support_Brackets_2
+    400052: Floor_Supports
+    400054: Floor_Supports12
+    400056: Floor_Supports13
+    400058: Floor_Supports14
+    400060: Floor_Supports15
+    400062: Floor_Supports16
+    400064: Floor_Supports17
+    400066: Floor_Supports18
+    400068: Floor_Supports19
+    400070: Floor_Supports20
+    400072: Floor_Supports21
+    400074: Floor_Supports22
+    400076: Floor_Supports_Horizontal
+    400078: Floor_Supports_Horizontal1
+    400080: Lab_Ceiling
+    400082: Rooms
+    2300000: Basement_Ceiling
+    2300002: Floor_Bracket
+    2300004: Floor_Bracket 1
+    2300006: Floor_Bracket1
+    2300008: Floor_Bracket1 1
+    2300010: Floor_Bracket10
+    2300012: Floor_Bracket10 1
+    2300014: Floor_Bracket2
+    2300016: Floor_Bracket2 1
+    2300018: Floor_Bracket3
+    2300020: Floor_Bracket3 1
+    2300022: Floor_Bracket4
+    2300024: Floor_Bracket4 1
+    2300026: Floor_Bracket5
+    2300028: Floor_Bracket5 1
+    2300030: Floor_Bracket6
+    2300032: Floor_Bracket6 1
+    2300034: Floor_Bracket7
+    2300036: Floor_Bracket7 1
+    2300038: Floor_Bracket8
+    2300040: Floor_Bracket8 1
+    2300042: Floor_Bracket9
+    2300044: Floor_Bracket9 1
+    2300046: Floor_Supports12
+    2300048: Floor_Supports13
+    2300050: Floor_Supports14
+    2300052: Floor_Supports15
+    2300054: Floor_Supports16
+    2300056: Floor_Supports17
+    2300058: Floor_Supports18
+    2300060: Floor_Supports19
+    2300062: Floor_Supports20
+    2300064: Floor_Supports21
+    2300066: Floor_Supports22
+    2300068: Floor_Supports_Horizontal
+    2300070: Floor_Supports_Horizontal1
+    2300072: Lab_Ceiling
+    2300074: Rooms
+    3300000: Basement_Ceiling
+    3300002: Floor_Bracket
+    3300004: Floor_Bracket 1
+    3300006: Floor_Bracket1
+    3300008: Floor_Bracket1 1
+    3300010: Floor_Bracket10
+    3300012: Floor_Bracket10 1
+    3300014: Floor_Bracket2
+    3300016: Floor_Bracket2 1
+    3300018: Floor_Bracket3
+    3300020: Floor_Bracket3 1
+    3300022: Floor_Bracket4
+    3300024: Floor_Bracket4 1
+    3300026: Floor_Bracket5
+    3300028: Floor_Bracket5 1
+    3300030: Floor_Bracket6
+    3300032: Floor_Bracket6 1
+    3300034: Floor_Bracket7
+    3300036: Floor_Bracket7 1
+    3300038: Floor_Bracket8
+    3300040: Floor_Bracket8 1
+    3300042: Floor_Bracket9
+    3300044: Floor_Bracket9 1
+    3300046: Floor_Supports12
+    3300048: Floor_Supports13
+    3300050: Floor_Supports14
+    3300052: Floor_Supports15
+    3300054: Floor_Supports16
+    3300056: Floor_Supports17
+    3300058: Floor_Supports18
+    3300060: Floor_Supports19
+    3300062: Floor_Supports20
+    3300064: Floor_Supports21
+    3300066: Floor_Supports22
+    3300068: Floor_Supports_Horizontal
+    3300070: Floor_Supports_Horizontal1
+    3300072: Lab_Ceiling
+    3300074: Rooms
+    4300000: Rooms
+    4300002: Basement_Ceiling
+    4300004: Lab_Ceiling
+    4300006: Floor_Bracket
+    4300008: Floor_Bracket1
+    4300010: Floor_Bracket2
+    4300012: Floor_Bracket3
+    4300014: Floor_Bracket4
+    4300016: Floor_Bracket5
+    4300018: Floor_Bracket6
+    4300020: Floor_Bracket7
+    4300022: Floor_Bracket8
+    4300024: Floor_Bracket9
+    4300026: Floor_Bracket10
+    4300028: Floor_Bracket
+    4300030: Floor_Bracket1
+    4300032: Floor_Bracket2
+    4300034: Floor_Bracket3
+    4300036: Floor_Bracket4
+    4300038: Floor_Bracket5
+    4300040: Floor_Bracket6
+    4300042: Floor_Bracket7
+    4300044: Floor_Bracket8
+    4300046: Floor_Bracket9
+    4300048: Floor_Bracket10
+    4300050: Floor_Supports_Horizontal
+    4300052: Floor_Supports21
+    4300054: Floor_Supports22
+    4300056: Floor_Supports20
+    4300058: Floor_Supports19
+    4300060: Floor_Supports18
+    4300062: Floor_Supports17
+    4300064: Floor_Supports13
+    4300066: Floor_Supports14
+    4300068: Floor_Supports15
+    4300070: Floor_Supports16
+    4300072: Floor_Supports12
+    4300074: Floor_Supports_Horizontal1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
