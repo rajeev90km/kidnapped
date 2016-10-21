@@ -29,7 +29,13 @@ public class InteractableItems : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag(Tags.Interactable)) {
             _hovereds.Add(other.gameObject);
-            _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
+            if (other.gameObject.transform.parent)
+            {
+                _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
+            } else
+            {
+                _hoveredParents.Add(null);
+            }
         }
     }
 
@@ -52,7 +58,7 @@ public class InteractableItems : MonoBehaviour {
             Rigidbody body = _grabbed.GetComponent<Rigidbody>();
             Debug.Assert(body != null, "Grabbable lacks a RigidBody");
             body.isKinematic = true;
-            _otherHand.GetComponent<InteractableItems>().ResetGrabbedObj(_closestOne);
+            _otherHand.GetComponent<InteractableItems>().ResetGrabbedObj(_grabbed);
             //}
         }
     }
@@ -74,16 +80,30 @@ public class InteractableItems : MonoBehaviour {
             Rigidbody body = _grabbed.GetComponent<Rigidbody>();
             Debug.Assert(body != null, "Grabbable lacks a RigidBody");
             body.isKinematic = false;
-            body.transform.parent = _hoveredParents[_hovereds.IndexOf(_grabbed)].transform;
+            if (_hoveredParents[_hovereds.IndexOf(_grabbed)])
+            {
+                body.transform.parent = _hoveredParents[_hovereds.IndexOf(_grabbed)].transform;
+            } else
+            {
+                body.transform.parent = null;
+            }
             body.velocity = SteamVR_Controller.Input((int)_trackedController.controllerIndex).velocity;
             body.angularVelocity = SteamVR_Controller.Input((int)_trackedController.controllerIndex).angularVelocity;
             _grabbed = null;
         }
     }
 
+    public void SetGrabbedParent(GameObject _originParent)
+    {
+        _hoveredParents[_hovereds.IndexOf(_grabbed)] = _originParent;
+    }
+
     public void ResetGrabbedObj(GameObject grabbedObj) {
-        if (grabbedObj == _grabbed) {
+        if (grabbedObj == _grabbed)
+        {
+            _otherHand.GetComponent<InteractableItems>().SetGrabbedParent(_hoveredParents[_hovereds.IndexOf(_grabbed)]);
             _grabbed = null;
+            Debug.Log(grabbedObj.name);
         }
     }
 }
