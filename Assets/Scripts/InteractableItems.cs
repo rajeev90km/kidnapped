@@ -15,11 +15,15 @@ public class InteractableItems : MonoBehaviour {
     private GameObject _grabbed;
     public GameObject _otherHand;
 
+    Animator _handAnim;
+    int _triggerPressHash = Animator.StringToHash("TriggerPress");
+
     void Start() {
+        _handAnim = transform.parent.GetComponent<Animator>();
         _hovereds = new List<GameObject>();
         _hoveredParents = new List<GameObject>();
         // TrackedController is on great-grandparent of attach point
-        _trackedController = transform.parent.parent.parent.GetComponent<SteamVR_TrackedController>();
+        _trackedController = transform.parent.parent.GetComponent<SteamVR_TrackedController>();
 
         // Register trigger click and unclick callbacks
         _trackedController.TriggerClicked += new ClickedEventHandler(OnTriggerClick);
@@ -50,6 +54,7 @@ public class InteractableItems : MonoBehaviour {
     }
 
     public void OnTriggerClick(object sender, ClickedEventArgs e) {
+        _handAnim.SetBool(_triggerPressHash, true);
         if (_hovereds.Count > 0) {
             GameObject _closestOne = GetClosestObj();
             //if (_closestOne.transform.parent == _hoveredParents[_hovereds.IndexOf(_closestOne)]) {
@@ -76,6 +81,7 @@ public class InteractableItems : MonoBehaviour {
         return _miniObj;
     }
     public void OnTriggerUnclick(object sender, ClickedEventArgs e) {
+        _handAnim.SetBool(_triggerPressHash, false);
         if (_grabbed) {
             Rigidbody body = _grabbed.GetComponent<Rigidbody>();
             Debug.Assert(body != null, "Grabbable lacks a RigidBody");
