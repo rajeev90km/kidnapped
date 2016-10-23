@@ -32,14 +32,8 @@ public class InteractableItems : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.tag == Tags.Interactable || other.tag == Tags.Breakable){// || other.tag == Tags.UnBreakable) {
-            GameObject _target;
-            if (other.tag == Tags.Breakable) {
-                _target = other.transform.parent.gameObject;
-            } else {
-                _target = other.gameObject;
-            }
-            _hovereds.Add(_target);
-            if (_target.transform.parent)
+            _hovereds.Add(other.gameObject);
+            if (other.gameObject.transform.parent)
             {
                 _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
             } else

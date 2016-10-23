@@ -33,27 +33,42 @@ public class BreakBottle : MonoBehaviour {
         if (other.gameObject.tag == Tags.Tough) {
             if (_myVelo.magnitude > _velocityThreshold) {
                 Debug.Log("Broken: " + _myVelo.magnitude);
-                foreach (Transform childPiece in transform.parent) {
-                    if (childPiece.gameObject.activeSelf) {
-                        _bottleSounds.PlayBreakingSound();
-                        childPiece.gameObject.SetActive(false);
-                    } else {
-                        childPiece.gameObject.SetActive(true);
-                        if (childPiece.tag != Tags.UnBreakable) {
-                            childPiece.parent = null;
-                            if (!childPiece.GetComponent<Rigidbody>()) {
-                                childPiece.gameObject.AddComponent<Rigidbody>();
-                            }
-                            
-                            EmitScatterPiece(childPiece, other);
-                            
+                _bottleSounds.PlayBreakingSound();
+                foreach (Transform childPiece in transform) {
+                    //if (childPiece.gameObject.activeSelf) {
+                    //    childPiece.gameObject.SetActive(false);
+                    //} else {
+                    childPiece.gameObject.SetActive(true);
+                    if (childPiece.tag != Tags.UnBreakable) {
+                        childPiece.parent = null;
+                        if (!childPiece.GetComponent<Rigidbody>()) {
+                            childPiece.gameObject.AddComponent<Rigidbody>();
                         }
+                            
+                        EmitScatterPiece(childPiece, other);
+                    } else
+                    {
+                        
                     }
+                    //}
                 }
+                
             } else {
                 Debug.Log("Smash Harder!");
             }
         }
+    }
+
+    void SubstituteMySonToMyself(Transform myson)
+    {
+        myson.parent = transform.parent;
+        myson.position = transform.position;
+        myson.rotation = transform.rotation;
+        Rigidbody _mysonRd = myson.GetComponent<Rigidbody>();
+        _mysonRd.velocity = _myRb.velocity;
+        _mysonRd.angularVelocity = _myRb.angularVelocity;
+        _mysonRd.useGravity = _myRb.useGravity;
+        _mysonRd.constraints = _myRb.constraints;
     }
 
     void EmitScatterPiece(Transform piece, Collision other) {
