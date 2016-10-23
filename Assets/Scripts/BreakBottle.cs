@@ -46,13 +46,15 @@ public class BreakBottle : MonoBehaviour {
                         }
                             
                         EmitScatterPiece(childPiece, other);
-                    } else
-                    {
-                        
+                    } else {
+                        if (!childPiece.GetComponent<Rigidbody>()) {
+                            childPiece.gameObject.AddComponent<Rigidbody>();
+                        }
+                        SubstituteMySonToMyself(childPiece);
                     }
                     //}
                 }
-                
+                Destroy(gameObject);
             } else {
                 Debug.Log("Smash Harder!");
             }
@@ -68,6 +70,7 @@ public class BreakBottle : MonoBehaviour {
         _mysonRd.velocity = _myRb.velocity;
         _mysonRd.angularVelocity = _myRb.angularVelocity;
         _mysonRd.useGravity = _myRb.useGravity;
+        _mysonRd.isKinematic = _myRb.isKinematic;
         _mysonRd.constraints = _myRb.constraints;
     }
 
