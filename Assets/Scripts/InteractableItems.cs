@@ -31,7 +31,7 @@ public class InteractableItems : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.CompareTag(Tags.Interactable)) {
+        if (other.tag == Tags.Interactable || other.tag == Tags.Breakable){// || other.tag == Tags.UnBreakable) {
             _hovereds.Add(other.gameObject);
             if (other.gameObject.transform.parent)
             {
@@ -62,7 +62,7 @@ public class InteractableItems : MonoBehaviour {
             _grabbed = _closestOne;
             Rigidbody body = _grabbed.GetComponent<Rigidbody>();
             Debug.Assert(body != null, "Grabbable lacks a RigidBody");
-            body.isKinematic = true;
+            body.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
             _otherHand.GetComponent<InteractableItems>().ResetGrabbedObj(_grabbed);
             //}
         }
@@ -85,7 +85,7 @@ public class InteractableItems : MonoBehaviour {
         if (_grabbed) {
             Rigidbody body = _grabbed.GetComponent<Rigidbody>();
             Debug.Assert(body != null, "Grabbable lacks a RigidBody");
-            body.isKinematic = false;
+            body.constraints = RigidbodyConstraints.None;
             if (_hoveredParents[_hovereds.IndexOf(_grabbed)])
             {
                 body.transform.parent = _hoveredParents[_hovereds.IndexOf(_grabbed)].transform;

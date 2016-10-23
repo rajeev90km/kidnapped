@@ -6,7 +6,7 @@ public class BreakBottle : MonoBehaviour {
 
     float _explosionRadius = 0.2f;
     float _explosionForce = 2.0f;
-    float _velocityThreshold = 0.4f;
+    float _velocityThreshold = 1f;
     AudioSource _audio;
     Rigidbody _myRb;
 
@@ -32,6 +32,7 @@ public class BreakBottle : MonoBehaviour {
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == Tags.Tough) {
             if (_myVelo.magnitude > _velocityThreshold) {
+                Debug.Log("Broken: " + _myVelo.magnitude);
                 foreach (Transform childPiece in transform) {
                     if (childPiece.gameObject.activeSelf) {
                         //    childPiece.gameObject.SetActive(false);
