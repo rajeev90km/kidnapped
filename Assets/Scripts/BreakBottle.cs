@@ -51,6 +51,7 @@ public class BreakBottle : MonoBehaviour {
                             childPiece.gameObject.AddComponent<Rigidbody>();
                         }
                         SubstituteMySonToMyself(childPiece);
+                        UpdateMySubstitution(childPiece.gameObject);
                     }
                     //}
                 }
@@ -80,5 +81,9 @@ public class BreakBottle : MonoBehaviour {
         if (_pieceRb) {
             _pieceRb.AddExplosionForce(_explosionForce * _myVelo.magnitude / 2.0f, other.contacts[0].point, _explosionRadius, 0.0f, ForceMode.Impulse);
         }
+    }
+
+    void UpdateMySubstitution(GameObject mySon) {
+        transform.parent.GetComponent<InteractableItems>().UpdateSubstitutionObj(gameObject, mySon);
     }
 }

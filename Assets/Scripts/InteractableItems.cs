@@ -104,6 +104,17 @@ public class InteractableItems : MonoBehaviour {
         _hoveredParents[_hovereds.IndexOf(_grabbed)] = _originParent;
     }
 
+    public void UpdateSubstitutionObj(GameObject origin, GameObject sub) {
+        if (_hovereds.Contains(origin)) {
+            _hovereds[_hovereds.IndexOf(origin)] = sub;
+            if (_grabbed == origin) {
+                _grabbed = sub;
+            }
+        } else {
+            Debug.LogWarning("No target obj for substitution");
+        }
+    }
+
     public void ResetGrabbedObj(GameObject grabbedObj) {
         if (grabbedObj == _grabbed)
         {
