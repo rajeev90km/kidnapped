@@ -7,6 +7,7 @@ public class BreakBottle : MonoBehaviour {
     float _explosionRadius = 0.2f;
     float _explosionForce = 2.0f;
     float _velocityThreshold = 0.4f;
+    AudioSource _audio;
     Rigidbody _myRb;
 
     Vector3 _myVelo;
@@ -16,6 +17,7 @@ public class BreakBottle : MonoBehaviour {
         _myVelo = Vector3.zero;
         _lastPos = transform.position;
         _myRb = GetComponent<Rigidbody>();
+        _audio = GetComponent<AudioSource>();
         Debug.Assert(_myRb != null, "Breakable Bottle lacks a RigidBody");
     }
 
@@ -42,6 +44,10 @@ public class BreakBottle : MonoBehaviour {
                             }
                             
                             EmitScatterPiece(childPiece, other);
+                            if (!_audio.isPlaying) {
+                                _audio.Play();
+                            }
+                            
                         }
                     }
                 }
