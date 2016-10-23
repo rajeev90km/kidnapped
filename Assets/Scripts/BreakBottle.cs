@@ -7,8 +7,9 @@ public class BreakBottle : MonoBehaviour {
     float _explosionRadius = 0.2f;
     float _explosionForce = 2.0f;
     float _velocityThreshold = 1f;
-    AudioSource _audio;
     Rigidbody _myRb;
+    [SerializeField]
+    BottleSounds _bottleSounds;
 
     Vector3 _myVelo;
     Vector3 _lastPos;
@@ -17,7 +18,6 @@ public class BreakBottle : MonoBehaviour {
         _myVelo = Vector3.zero;
         _lastPos = transform.position;
         _myRb = GetComponent<Rigidbody>();
-        _audio = GetComponent<AudioSource>();
         Debug.Assert(_myRb != null, "Breakable Bottle lacks a RigidBody");
     }
 
@@ -33,11 +33,12 @@ public class BreakBottle : MonoBehaviour {
         if (other.gameObject.tag == Tags.Tough) {
             if (_myVelo.magnitude > _velocityThreshold) {
                 Debug.Log("Broken: " + _myVelo.magnitude);
-                foreach (Transform childPiece in transform) {
+                foreach (Transform childPiece in transform.parent) {
                     if (childPiece.gameObject.activeSelf) {
-                        //    childPiece.gameObject.SetActive(false);
-                        //} else {
-                        //childPiece.gameObject.SetActive(true);
+                        _bottleSounds.PlayBreakingSound();
+                        childPiece.gameObject.SetActive(false);
+                    } else {
+                        childPiece.gameObject.SetActive(true);
                         if (childPiece.tag != Tags.UnBreakable) {
                             childPiece.parent = null;
                             if (!childPiece.GetComponent<Rigidbody>()) {
@@ -45,9 +46,6 @@ public class BreakBottle : MonoBehaviour {
                             }
                             
                             EmitScatterPiece(childPiece, other);
-                            if (!_audio.isPlaying) {
-                                _audio.Play();
-                            }
                             
                         }
                     }
