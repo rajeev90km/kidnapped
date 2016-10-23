@@ -21,6 +21,9 @@ public class RespawnInteractableObject : MonoBehaviour {
         if (other.CompareTag(Tags.Interactable))
         {
             other.gameObject.transform.position = _defaultPosition;
+            other.gameObject.transform.parent = null;
+            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            other.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
     }
 }
