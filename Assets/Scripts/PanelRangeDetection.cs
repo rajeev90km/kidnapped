@@ -7,7 +7,7 @@ public class PanelRangeDetection : MonoBehaviour {
 
     Animator _handAnim;
     int _nearPanelHash = Animator.StringToHash("NearPanel");
-    float _range = 1;
+    float _range = 0.5f;
 
     void Start() {
         _handAnim = GetComponent<Animator>();
@@ -16,10 +16,8 @@ public class PanelRangeDetection : MonoBehaviour {
     void Update() {
         if (Vector3.Distance(PanelCenter.transform.position, transform.position) < _range) {
             _handAnim.SetBool(_nearPanelHash, true);
-            Debug.Log("Yes");
         } else {
             _handAnim.SetBool(_nearPanelHash, false);
-            Debug.Log("No");
         }
     }
 }
