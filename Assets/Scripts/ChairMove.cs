@@ -3,26 +3,32 @@ using System.Collections;
 
 public class ChairMove : MonoBehaviour {
 
-    GameObject cameraEye;
+    [SerializeField]
+    Transform BoundHand;
+    Vector3 _lastBoundHandPos;
+    Vector3 _handChairOffset;
+    float _moveThreshold = 0.01f;
 
-    float currentTime;
-	// Use this for initialization
+    bool _isChairDestroyed;
+    // Use this for initialization
 	void Start () {
-        cameraEye = GameObject.Find("Camera (eye)");
-
-        InvokeRepeating("UpdateChairPosition", 1.0f, 1.0f);
+        _isChairDestroyed = false;
+        _handChairOffset = new Vector3(-0.28f, -0.656f, -0.004f);
+        _lastBoundHandPos = BoundHand.position;
     }
-	
-    void UpdateChairPosition()
-    {
-        if (cameraEye) { 
-            if (cameraEye.transform.position.y > 1.0f)
-               transform.position = new Vector3(cameraEye.transform.position.x, transform.position.y, cameraEye.transform.position.z);
+
+
+    void Update() {
+        if (!_isChairDestroyed) {
+            if (Vector3.Distance(BoundHand.position, _lastBoundHandPos) > _moveThreshold) {
+                transform.position = BoundHand.position + _handChairOffset;
+                //maybe a lerp here?
+                _lastBoundHandPos = BoundHand.position;
+            }
         }
-
-    }
-    // Update is called once per frame
-    void Update () {
-        
 	}
+
+    public void SetChairDestroyedFlag() {
+        _isChairDestroyed = true;
+    }
 }

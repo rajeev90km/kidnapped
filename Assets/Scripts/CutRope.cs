@@ -13,15 +13,16 @@ public class CutRope : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "brokenBottleTop")
+        if (other.gameObject.layer == LayerMask.NameToLayer(Layers.Sharp))
         {
             GetComponent<Animator>().SetBool("RopeCut", true);
             StartCoroutine(SetFree());
+            transform.parent.GetComponent<ChairMove>().SetChairDestroyedFlag();
         }
     }
 
