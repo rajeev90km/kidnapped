@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BreakBottle : MonoBehaviour {
@@ -23,6 +24,12 @@ public class BreakBottle : MonoBehaviour {
 
     void Update() {
         UpdateVelocity();
+        //GameObject[] result = GameObject.FindGameObjectsWithTag(Tags.Breakable);
+        //if (result[0]) {
+        //    Debug.Log("TargetFound: " + result[0].name);
+        //} else {
+        //    Debug.Log("Nothing found");
+        //}
     }
 
     void UpdateVelocity() {
@@ -39,7 +46,7 @@ public class BreakBottle : MonoBehaviour {
                     //    childPiece.gameObject.SetActive(false);
                     //} else {
                     childPiece.gameObject.SetActive(true);
-                    if (childPiece.tag != Tags.UnBreakable) {
+                    if (childPiece.tag != Tags.BreakHeir) {
                         childPiece.parent = null;
                         if (!childPiece.GetComponent<Rigidbody>()) {
                             childPiece.gameObject.AddComponent<Rigidbody>();
