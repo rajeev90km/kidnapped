@@ -7,7 +7,7 @@ public class BreakBottle : MonoBehaviour {
 
     float _explosionRadius = 0.2f;
     float _explosionForce = 2.0f;
-    float _velocityThreshold = 1f;
+    float _velocityThreshold = 2f;
     Rigidbody _myRb;
     [SerializeField]
     BottleSounds _bottleSounds;
