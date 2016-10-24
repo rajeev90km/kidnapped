@@ -72,14 +72,14 @@ public class Door : MonoBehaviour
             {
                 moveDoor = true;
 
-                if (handObj.transform.position.z - transform.position.z > 0)
-                {
+//if (handObj.transform.position.z - transform.position.z > 0)
+               // {
                     direction = 1;
-                }
-                else
-                {
-                    direction = -1;
-                }
+                //}
+                //else
+                //{
+                 //   direction = -1;
+                //}
             }
         }
         else

@@ -65,13 +65,13 @@ public class PassCode : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
         if (code.CompareTo(correctPassCode) == 0)
         {
+            isCorrectCodeEntered = true;
             passCodeDisplay.text = "CORRECT";
             //Door open Sound
             aSources[0].Play();
             yield return new WaitForSeconds(4f);
             passCodeDisplay.text = ""; ;
             waitForCodeCheck = false;
-            isCorrectCodeEntered = true;
 
         }
         else

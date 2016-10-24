@@ -19,7 +19,7 @@ public class PrintCard : MonoBehaviour {
         _printCard = false;
         _playAudio = false;
         _audio = GetComponent<AudioSource>();
-        _destination = new Vector3(0.0149f, 0.9746f, -2.2173f);
+        _destination = new Vector3(0.036f, 1.4407f, -1.7509f);
     }
 	
     void OnTriggerEnter(Collider other)
