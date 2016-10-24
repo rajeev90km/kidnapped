@@ -96,6 +96,8 @@ public class BreakBottle : MonoBehaviour {
             if (transform.parent.GetComponent<InteractableItems>())
             {
                 transform.parent.GetComponent<InteractableItems>().UpdateSubstitutionObj(gameObject, mySon);
+            } else {
+                Debug.Log("Breaking Bottle's current parent is not hand");
             }
         }
     }
