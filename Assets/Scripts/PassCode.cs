@@ -6,7 +6,16 @@ public class PassCode : MonoBehaviour {
     private float lastTimeOfEnterCode;
     public TextMesh passCodeDisplay;
 
+    public string correctPassCode = "1211";
+
     private bool waitForCodeCheck = false;
+
+    private bool isCorrectCodeEntered = false;
+
+    public bool IsCodeUnlocked()
+    {
+        return isCorrectCodeEntered;
+    }
 
     // Use this for initialization
     void Start () {
@@ -15,40 +24,57 @@ public class PassCode : MonoBehaviour {
 
     public void EnterCode(int codeValue)
     {
-
-        if (waitForCodeCheck == false)
+        if (isCorrectCodeEntered == false)
         {
-            if (Time.time - lastTimeOfEnterCode < 0.5f) // Can only press button every 0.75 seconds
+            if (waitForCodeCheck == false)
             {
-                return;
-            }
+                if (Time.time - lastTimeOfEnterCode < 0.5f) // Can only press button every 0.75 seconds
+                {
+                    return;
+                }
 
-            lastTimeOfEnterCode = Time.time;
+                lastTimeOfEnterCode = Time.time;
 
-            if (passCodeDisplay.text == "----")
-            {
-                passCodeDisplay.text = codeValue.ToString();
-            }
-            else
-            {
-                passCodeDisplay.text += codeValue;
-            }
+                if (passCodeDisplay.text == "----")
+                {
+                    passCodeDisplay.text = codeValue.ToString();
+                }
+                else
+                {
+                    passCodeDisplay.text += codeValue;
+                }
 
-            if (passCodeDisplay.text.Length == 4)
-            {
-                waitForCodeCheck = true;
-                StartCoroutine(checkCode(int.Parse(passCodeDisplay.text)));
+                if (passCodeDisplay.text.Length == 4)
+                {
+                    waitForCodeCheck = true;
+                    StartCoroutine(checkCode((passCodeDisplay.text)));
+                }
             }
         }
     }
 
-    public IEnumerator checkCode(int code)
+    public IEnumerator checkCode(string code)
     {
+        Debug.Log(code + "  " + correctPassCode);
         yield return new WaitForSeconds(0.75f);
-        passCodeDisplay.text = "RETRY";
-        yield return new WaitForSeconds(1f);
-        passCodeDisplay.text = "----";
-        waitForCodeCheck = false;
+        if (code.CompareTo(correctPassCode) == 0)
+        {
+            passCodeDisplay.text = "CORRECT";
+            //Door open Sound
+            GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(4f);
+            passCodeDisplay.text = ""; ;
+            waitForCodeCheck = false;
+            isCorrectCodeEntered = true;
+
+        }
+        else
+        {
+            passCodeDisplay.text = "RETRY";
+            yield return new WaitForSeconds(1f);
+            passCodeDisplay.text = "----";
+            waitForCodeCheck = false;
+        }
     }
 
     // Update is called once per frame
