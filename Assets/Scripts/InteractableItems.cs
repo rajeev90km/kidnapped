@@ -61,6 +61,8 @@ public class InteractableItems : MonoBehaviour {
             _closestOne.transform.parent = this.transform;
             _grabbed = _closestOne;
             Rigidbody body = _grabbed.GetComponent<Rigidbody>();
+            body.useGravity = true;
+            body.isKinematic = false;
             Debug.Assert(body != null, "Grabbable lacks a RigidBody");
             body.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
             _otherHand.GetComponent<InteractableItems>().ResetGrabbedObj(_grabbed);
