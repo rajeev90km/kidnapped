@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
 
     void Awake()
     {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
+
     }
 
     void Start()
@@ -28,13 +28,15 @@ public class Door : MonoBehaviour
 
     void FixedUpdate()
     {
-        device = SteamVR_Controller.Input((int)trackedObj.index);
+        if(trackedObj)
+            device = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
     void OnTriggerEnter(Collider col)
     {
         moveDoor = false;
         handObj = col.gameObject;
+        trackedObj = handObj.transform.parent.parent.GetComponent<SteamVR_TrackedObject>();
     }
 
     void OnTriggerExit(Collider col)

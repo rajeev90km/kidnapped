@@ -84,6 +84,12 @@ public class BreakBottle : MonoBehaviour {
     }
 
     void UpdateMySubstitution(GameObject mySon) {
-        transform.parent.GetComponent<InteractableItems>().UpdateSubstitutionObj(gameObject, mySon);
+        if (transform.parent)
+        {
+            if (transform.parent.GetComponent<InteractableItems>())
+            {
+                transform.parent.GetComponent<InteractableItems>().UpdateSubstitutionObj(gameObject, mySon);
+            }
+        }
     }
 }
