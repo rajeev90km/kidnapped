@@ -21,6 +21,9 @@ public class FacebookApi : MonoBehaviour
     private TextMesh fbName;
     private MeshRenderer fbPicture;
 
+    public TextMesh idCardName;
+    public MeshRenderer idCardPicture;
+
     public void Awake()
     {
         //this.Login();
@@ -104,6 +107,9 @@ public class FacebookApi : MonoBehaviour
 
         Debug.Log(user_id);
 
+        //SET NAME TO ID CARD
+        idCardName.text = userObj.first_name + "\n" + userObj.last_name;
+
         StartCoroutine(retrieveUserPicture());
 
     }
@@ -137,7 +143,10 @@ public class FacebookApi : MonoBehaviour
      */
     public void renderUserInfo(Texture2D tex)
     {
+        idCardPicture.material.mainTexture = tex;
         fbPicture.material.mainTexture = tex;
+        
+        
 
         //fbName.text = "Hello\n" + userObj.first_name + "\n" + userObj.last_name.ToString();
 

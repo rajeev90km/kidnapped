@@ -5,6 +5,8 @@ using System.Collections;
 public class Door : MonoBehaviour
 {
 
+    public GameObject idCardObject;
+
     private bool moveDoor = false;
     private int direction = 1;
 
@@ -12,6 +14,8 @@ public class Door : MonoBehaviour
 
     float lastPosition = 0;
     private GameObject handObj;
+
+    private bool isCardPrinted = false;
 
 
     private bool isCodeUnlocked = false;
@@ -35,6 +39,18 @@ public class Door : MonoBehaviour
     {
         if (trackedObj)
             device = SteamVR_Controller.Input((int)trackedObj.index);
+    }
+
+    void Update()
+    {
+        if (transform.parent.localEulerAngles.y >= 150f)
+        {
+            if (!isCardPrinted)
+            {
+                idCardObject.GetComponent<PrintCard>()._printCard = true;
+                isCardPrinted = true;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider col)

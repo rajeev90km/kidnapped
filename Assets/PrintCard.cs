@@ -25,7 +25,11 @@ public class PrintCard : MonoBehaviour {
                 _audio.Play();
                 _playAudio = true;
             }
-            transform.position = Vector3.MoveTowards(transform.position, _destination, Time.deltaTime * 0.1f);
+            transform.position = Vector3.MoveTowards(transform.position, _destination, Time.deltaTime * 0.03f);
+        }
+        if(transform.position == _destination)
+        {
+            _printCard = false;
         }
 	}
 }
