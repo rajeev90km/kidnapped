@@ -22,7 +22,7 @@ public class CutRope : MonoBehaviour {
         {
             GetComponent<Animator>().SetBool("RopeCut", true);
             StartCoroutine(SetFree());
-            transform.parent.GetComponent<ChairMove>().SetChairDestroyedFlag();
+            transform.parent.parent.GetComponent<FakeHand>().SetChairDestroyedFlag();
         }
     }
 
