@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class FacebookApi : MonoBehaviour
 {
-    private static readonly string _facebookAppId = "563723290482544";
+    private static readonly string _facebookAppId = "563703407151199";
     private static readonly string _redirectEndpoint = "http://joesbabysitting.com/thankyou.php";
-    private static readonly string _appSecret = "22d0a95c39adadc36d0307fb6cd77cd4";
+    private static readonly string _appSecret = "933bcc85980579c103abcf53705faee3";
 
     private string access_code;
     private string access_token;
