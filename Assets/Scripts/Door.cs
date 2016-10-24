@@ -8,8 +8,13 @@ public class Door : MonoBehaviour
     private bool moveDoor = false;
     private int direction = 1;
 
+    public GameObject passCodePanel;
+
     float lastPosition = 0;
     private GameObject handObj;
+
+
+    private bool isCodeUnlocked = false;
 
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
@@ -34,6 +39,8 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        isCodeUnlocked = passCodePanel.GetComponent<PassCode>().IsCodeUnlocked();
+        Debug.Log(isCodeUnlocked);
         moveDoor = false;
         handObj = col.gameObject;
         trackedObj = handObj.transform.parent.parent.GetComponent<SteamVR_TrackedObject>();
@@ -41,18 +48,22 @@ public class Door : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+        Debug.Log(isCodeUnlocked);
+        if (isCodeUnlocked)
         {
-            moveDoor = true;
+            //if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+            //{
+                moveDoor = true;
 
-            if (handObj.transform.position.z - transform.position.z > 0)
-            {
-                direction = 1;
-            }
-            else
-            {
-                direction = -1;
-            }
+                if (handObj.transform.position.z - transform.position.z > 0)
+                {
+                    direction = 1;
+                }
+                else
+                {
+                    direction = -1;
+                }
+          //  }
         }
     }
 
