@@ -18,7 +18,7 @@ public class CutRope : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer(Layers.Sharp))
+        if (other.gameObject.layer == LayerMask.NameToLayer(Layers.Sharp) && other.transform.parent.name == "attach")
         {
             GetComponent<Animator>().SetBool("RopeCut", true);
             StartCoroutine(SetFree());
