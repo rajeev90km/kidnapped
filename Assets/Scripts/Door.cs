@@ -33,7 +33,7 @@ public class Door : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(trackedObj)
+        if (trackedObj)
             device = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
@@ -51,8 +51,8 @@ public class Door : MonoBehaviour
         Debug.Log(isCodeUnlocked);
         if (isCodeUnlocked)
         {
-            //if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
-            //{
+            if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+            {
                 moveDoor = true;
 
                 if (handObj.transform.position.z - transform.position.z > 0)
@@ -63,7 +63,11 @@ public class Door : MonoBehaviour
                 {
                     direction = -1;
                 }
-          //  }
+            }
+        }
+        else
+        {
+            GetComponent<AudioSource>().Play();
         }
     }
 

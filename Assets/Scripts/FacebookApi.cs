@@ -93,19 +93,19 @@ public class FacebookApi : MonoBehaviour
      */
     public IEnumerator retrieveUserDetails()
     {
-        WWW userDetailsJson = new WWW(String.Format("https://graph.facebook.com/v2.8/me?fields=first_name%2Clast_name%2Cgender%2Cage_range%2Cid&access_token={0}",access_token));
+        WWW userDetailsJson = new WWW(String.Format("https://graph.facebook.com/v2.8/me?fields=first_name%2Clast_name%2Cgender%2Cage_range%2Cid&access_token={0}", access_token));
 
         yield return userDetailsJson;
 
         Debug.Log(userDetailsJson.text);
-        
+
         userObj = UserObj.CreateFromJson(userDetailsJson.text);
         user_id = userObj.id;
 
         Debug.Log(user_id);
 
         StartCoroutine(retrieveUserPicture());
-        
+
     }
 
 
@@ -130,7 +130,7 @@ public class FacebookApi : MonoBehaviour
     }
 
 
-    
+
 
     /*
      * Render User information

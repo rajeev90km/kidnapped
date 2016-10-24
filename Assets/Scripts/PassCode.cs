@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PassCode : MonoBehaviour {
+public class PassCode : MonoBehaviour
+{
 
     private float lastTimeOfEnterCode;
     public TextMesh passCodeDisplay;
@@ -12,18 +13,23 @@ public class PassCode : MonoBehaviour {
 
     private bool isCorrectCodeEntered = false;
 
+    private AudioSource[] aSources;
+
     public bool IsCodeUnlocked()
     {
         return isCorrectCodeEntered;
     }
 
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start()
+    {
+        aSources = GetComponents<AudioSource>();
+    }
 
     public void EnterCode(int codeValue)
     {
+        //Button Press
+        aSources[1].Play();
         if (isCorrectCodeEntered == false)
         {
             if (waitForCodeCheck == false)
@@ -61,7 +67,7 @@ public class PassCode : MonoBehaviour {
         {
             passCodeDisplay.text = "CORRECT";
             //Door open Sound
-            GetComponent<AudioSource>().Play();
+            aSources[0].Play();
             yield return new WaitForSeconds(4f);
             passCodeDisplay.text = ""; ;
             waitForCodeCheck = false;
@@ -70,6 +76,8 @@ public class PassCode : MonoBehaviour {
         }
         else
         {
+            //Wrong Button
+            aSources[2].Play();
             passCodeDisplay.text = "RETRY";
             yield return new WaitForSeconds(1f);
             passCodeDisplay.text = "----";
@@ -78,7 +86,8 @@ public class PassCode : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-	
-	}
+    void Update()
+    {
+
+    }
 }
