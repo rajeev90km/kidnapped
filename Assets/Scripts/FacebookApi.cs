@@ -28,7 +28,7 @@ public class FacebookApi : MonoBehaviour
         Debug.Log("asdasd");
 
         //fbName = GameObject.Find("Facebook Name").GetComponent<TextMesh>();
-        fbPicture = GameObject.FindGameObjectWithTag("VictimPicture").GetComponent<MeshRenderer>();
+        fbPicture = GameObject.Find("VictimPicture").GetComponent<MeshRenderer>();
     }
 
 
