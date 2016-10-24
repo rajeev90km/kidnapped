@@ -8,8 +8,8 @@ public class InteractableItems : MonoBehaviour {
     private SteamVR_TrackedController _trackedController;
 
     // Object (if any) in grab range and not currently grabbed
-    private List<GameObject> _hovereds;
-    private List<GameObject> _hoveredParents;
+    public List<GameObject> _hovereds;
+    public List<GameObject> _hoveredParents;
 
     // Object currently grabbed
     private GameObject _grabbed;
@@ -32,13 +32,17 @@ public class InteractableItems : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.tag == Tags.Interactable || other.tag == Tags.BreakHeir) {
-            _hovereds.Add(other.gameObject);
-            if (other.gameObject.transform.parent)
+            if (!_hovereds.Contains(other.gameObject))
             {
-                _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
-            } else
-            {
-                _hoveredParents.Add(null);
+                _hovereds.Add(other.gameObject);
+                if (other.gameObject.transform.parent)
+                {
+                    _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
+                }
+                else
+                {
+                    _hoveredParents.Add(null);
+                }
             }
         }
     }
