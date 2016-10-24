@@ -51,12 +51,13 @@ public class Door : MonoBehaviour
                 isCardPrinted = true;
             }
         }
+
+        isCodeUnlocked = passCodePanel.GetComponent<PassCode>().IsCodeUnlocked();
+        Debug.Log(isCodeUnlocked);
     }
 
     void OnTriggerEnter(Collider col)
     {
-        isCodeUnlocked = passCodePanel.GetComponent<PassCode>().IsCodeUnlocked();
-        Debug.Log(isCodeUnlocked);
         moveDoor = false;
         handObj = col.gameObject;
         trackedObj = handObj.transform.parent.parent.GetComponent<SteamVR_TrackedObject>();
