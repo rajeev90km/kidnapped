@@ -37,7 +37,13 @@ public class InteractableItems : MonoBehaviour {
                 _hovereds.Add(other.gameObject);
                 if (other.gameObject.transform.parent)
                 {
-                    _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
+                    if (other.gameObject.transform.parent.name == "attach")
+                    {
+                        _hoveredParents.Add(_otherHand.GetComponent<InteractableItems>().GetRealParent(other.gameObject));
+                    } else
+                    {
+                        _hoveredParents.Add(other.gameObject.transform.parent.gameObject);
+                    }
                 }
                 else
                 {
@@ -94,14 +100,26 @@ public class InteractableItems : MonoBehaviour {
             body.constraints = RigidbodyConstraints.None;
             if (_hoveredParents[_hovereds.IndexOf(_grabbed)])
             {
-                body.transform.parent = _hoveredParents[_hovereds.IndexOf(_grabbed)].transform;
+                _grabbed.transform.parent = _hoveredParents[_hovereds.IndexOf(_grabbed)].transform;
             } else
             {
-                body.transform.parent = null;
+                _grabbed.transform.parent = null;
             }
             body.velocity = SteamVR_Controller.Input((int)_trackedController.controllerIndex).velocity;
             body.angularVelocity = SteamVR_Controller.Input((int)_trackedController.controllerIndex).angularVelocity;
             _grabbed = null;
+        }
+    }
+
+    public GameObject GetRealParent(GameObject _target)
+    {
+        if (_hovereds.Contains(_target))
+        {
+            return _hoveredParents[_hovereds.IndexOf(_target)];
+        } else
+        {
+            Debug.Log("this means obj is a child of hand but not registerted in the list");
+            return null;
         }
     }
 
