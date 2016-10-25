@@ -13,6 +13,8 @@ public class PassCode : MonoBehaviour
 
     private bool isCorrectCodeEntered = false;
 
+    private int numAttempts = 0;
+
     private AudioSource[] aSources;
 
     public bool IsCodeUnlocked()
@@ -61,9 +63,12 @@ public class PassCode : MonoBehaviour
 
     public IEnumerator checkCode(string code)
     {
-        Debug.Log(code + "  " + correctPassCode);
+
+        numAttempts++;
+
         yield return new WaitForSeconds(0.75f);
-        if (code.CompareTo(correctPassCode) == 0)
+
+        if (numAttempts == 5)
         {
             isCorrectCodeEntered = true;
             passCodeDisplay.text = "CORRECT";
@@ -72,16 +77,29 @@ public class PassCode : MonoBehaviour
             yield return new WaitForSeconds(4f);
             passCodeDisplay.text = ""; ;
             waitForCodeCheck = false;
-
         }
         else
         {
-            //Wrong Button
-            aSources[2].Play();
-            passCodeDisplay.text = "RETRY";
-            yield return new WaitForSeconds(1f);
-            passCodeDisplay.text = "----";
-            waitForCodeCheck = false;
+            if (code.CompareTo(correctPassCode) == 0)
+            {
+                isCorrectCodeEntered = true;
+                passCodeDisplay.text = "CORRECT";
+                //Door open Sound
+                aSources[0].Play();
+                yield return new WaitForSeconds(4f);
+                passCodeDisplay.text = ""; ;
+                waitForCodeCheck = false;
+
+            }
+            else
+            {
+                //Wrong Button
+                aSources[2].Play();
+                passCodeDisplay.text = "RETRY";
+                yield return new WaitForSeconds(1f);
+                passCodeDisplay.text = "----";
+                waitForCodeCheck = false;
+            }
         }
     }
 
