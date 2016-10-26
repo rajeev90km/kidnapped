@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     float lastPosition = 0;
     private GameObject handObj;
 
-    private bool isCardPrinted = false;
+    //private bool isCardPrinted = false;
 
     private bool doorUnlockedSoundPlayed = false;
 
@@ -46,14 +46,14 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (transform.parent.localEulerAngles.y >= 150f)
-        {
-            if (!isCardPrinted)
-            {
-                idCardObject.GetComponent<PrintCard>()._printCard = true;
-                isCardPrinted = true;
-            }
-        }
+        //if (transform.parent.localEulerAngles.y >= 150f)
+        //{
+        //    if (!isCardPrinted)
+        //    {
+        //        idCardObject.GetComponent<PrintCard>()._printCard = true;
+        //        isCardPrinted = true;
+        //    }
+        //}
 
         isRopeUntied = ropeObj.GetComponent<CutRope>().IsRopeUntied();
         if(isRopeUntied==true)
