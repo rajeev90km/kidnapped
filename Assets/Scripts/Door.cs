@@ -128,7 +128,7 @@ public class Door : MonoBehaviour
         {
             if (moveDoor)
             {
-                if (transform.parent.localEulerAngles.y < 150f)
+                if (transform.parent.localEulerAngles.y < 140f)
                 {
                     float angle = 0.0f;
                     angle = Vector3.Angle(transform.parent.position, handObj.transform.position);
@@ -138,7 +138,7 @@ public class Door : MonoBehaviour
                     //Debug.Log(Vector3.Distance(transform.position, handObj.transform.position));
                     if (Vector3.Distance(transform.position, handObj.transform.position) > 0.5f)
                     {
-                        if (transform.parent.localEulerAngles.y < 150f)
+                        if (transform.parent.localEulerAngles.y < 140f)
                             transform.parent.localEulerAngles = new Vector3(0, -yRot, 0);
                     }
                     else
