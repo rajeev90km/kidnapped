@@ -6,6 +6,8 @@ public class CutRope : MonoBehaviour {
     public GameObject _chair;
     private AudioSource _audio;
 
+    private bool isRopeUntied = false;
+
 	// Use this for initialization
 	void Start () {
         _audio = GetComponent<AudioSource>();
@@ -23,13 +25,24 @@ public class CutRope : MonoBehaviour {
             GetComponent<Animator>().SetBool("RopeCut", true);
             StartCoroutine(SetFree());
             transform.parent.parent.GetComponent<FakeHand>().SetChairDestroyedFlag();
+
         }
+    }
+
+    IEnumerator UnlockDoor()
+    {
+        yield return new WaitForSeconds(5f);
+    }
+
+    public bool IsRopeUntied()
+    {
+        return isRopeUntied;
     }
 
     IEnumerator SetFree()
     {
         yield return new WaitForSeconds(2f);
-        _audio.Play();
+        isRopeUntied = true;
         _chair.SetActive(false);
         gameObject.GetComponent<Rigidbody>().useGravity = true;
     }
