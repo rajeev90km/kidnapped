@@ -8,7 +8,7 @@ public class FakeHand : MonoBehaviour {
     Vector3 _realHandPrevPos;
     bool _isChairDestroyed;
 
-    public float TRACKING_THRESHOLD = 0.004f;
+    public float TRACKING_THRESHOLD = 0.1f;
     
 
     // Use this for initialization
