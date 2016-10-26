@@ -27,4 +27,8 @@ public class Test : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 	}
+
+    void OnCollisionEnter(Collision colli) {
+        Debug.Log("Colli detected by: " + gameObject.name);
+    }
 }

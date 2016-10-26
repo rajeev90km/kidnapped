@@ -6,4 +6,6 @@ public static class Tags{
     public const string Tough = "Tough";
     public const string BreakHeir = "BreakHeir";
     public const string Knob = "Knob";
+    public const string Paper = "Paper";
+    public const string SpecialPaper = "SpecialPaper";
 }
