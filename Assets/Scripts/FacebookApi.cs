@@ -10,6 +10,11 @@ public class FacebookApi : MonoBehaviour
     private static readonly string _redirectEndpoint = "http://joesbabysitting.com/thankyou.php";
     private static readonly string _appSecret = "933bcc85980579c103abcf53705faee3";
 
+    //Test Version
+    //private static readonly string _facebookAppId = "563723290482544";
+    //private static readonly string _redirectEndpoint = "http://joesbabysitting.com/thankyou.php";
+    //private static readonly string _appSecret = "22d0a95c39adadc36d0307fb6cd77cd4";
+
     private string access_code;
     private string access_token;
     private string user_id;
@@ -28,7 +33,6 @@ public class FacebookApi : MonoBehaviour
     {
         //this.Login();
         StartCoroutine(parseCode());
-        Debug.Log("asdasd");
 
         //fbName = GameObject.Find("Facebook Name").GetComponent<TextMesh>();
         fbPicture = GameObject.Find("VictimPicture").GetComponent<MeshRenderer>();
@@ -42,7 +46,7 @@ public class FacebookApi : MonoBehaviour
     public void Login()
     {
         var token = Guid.NewGuid().ToString();
-        Debug.Log(token);
+        //Debug.Log(token);
         Application.OpenURL(String.Format("https://graph.facebook.com/oauth/authorize?client_id={0}&redirect_uri={1}&state={2}", _facebookAppId, _redirectEndpoint, "c8824f0e-54db-8119-b157-410ff5570d75"));
     }
 
@@ -57,12 +61,12 @@ public class FacebookApi : MonoBehaviour
 
         yield return respJson;
 
-        Debug.Log(respJson.text);
+        //.Log(respJson.text);
 
         codeObj = AuthCode.CreateFromJson(respJson.text);
         access_code = codeObj.authCode;
 
-        Debug.Log(access_code);
+       // Debug.Log(access_code);
 
         StartCoroutine(retrieveAccessToken());
     }
@@ -75,7 +79,7 @@ public class FacebookApi : MonoBehaviour
     public IEnumerator retrieveAccessToken()
     {
 
-        Debug.Log(String.Format("https://graph.facebook.com/v2.8/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}", _facebookAppId, _redirectEndpoint, _appSecret, access_code));
+        //Debug.Log(String.Format("https://graph.facebook.com/v2.8/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}", _facebookAppId, _redirectEndpoint, _appSecret, access_code));
         WWW accessTokenJson = new WWW(String.Format("https://graph.facebook.com/v2.8/oauth/access_token?client_id={0}&redirect_uri={1}&client_secret={2}&code={3}", _facebookAppId, _redirectEndpoint, _appSecret, access_code));
         //yield return null;
         yield return accessTokenJson;
@@ -83,7 +87,7 @@ public class FacebookApi : MonoBehaviour
         accessTokenObj = AccessToken.CreateFromJson(accessTokenJson.text);
         access_token = accessTokenObj.access_token;
 
-        Debug.Log(access_token);
+        //Debug.Log(access_token);
 
         StartCoroutine(retrieveUserDetails());
     }
@@ -100,12 +104,12 @@ public class FacebookApi : MonoBehaviour
 
         yield return userDetailsJson;
 
-        Debug.Log(userDetailsJson.text);
+        //Debug.Log(userDetailsJson.text);
 
         userObj = UserObj.CreateFromJson(userDetailsJson.text);
         user_id = userObj.id;
 
-        Debug.Log(user_id);
+        //Debug.Log(user_id);
 
         //SET NAME TO ID CARD
         idCardName.text = userObj.first_name + "\n" + userObj.last_name;
@@ -126,7 +130,7 @@ public class FacebookApi : MonoBehaviour
         WWW profilePicture = new WWW(String.Format("http://graph.facebook.com/{0}/picture?width=256&height=256", user_id));
         yield return profilePicture;
 
-        Debug.Log(profilePicture.text);
+        //Debug.Log(profilePicture.text);
         Texture2D tex = new Texture2D(100, 100, TextureFormat.DXT1, false);
 
         while (!profilePicture.isDone) { };
