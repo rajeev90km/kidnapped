@@ -10,29 +10,32 @@ public class Door : MonoBehaviour
     private bool moveDoor = false;
     private int direction = 1;
 
-    public GameObject passCodePanel;
+    public GameObject ropeObj;
 
     float lastPosition = 0;
     private GameObject handObj;
 
-    private bool isCardPrinted = false;
+    //private bool isCardPrinted = false;
+
+    private bool doorUnlockedSoundPlayed = false;
 
 
-    private bool isCodeUnlocked = false;
+    private AudioSource[] aSources;
+
+    private bool rotating = false;
+    private bool isRopeUntied = false;
 
     SteamVR_TrackedObject trackedObj;
     SteamVR_Controller.Device device;
 
     void Awake()
     {
-
+        aSources = GetComponents<AudioSource>();
     }
 
     void Start()
     {
-
         StartCoroutine(doorMover());
-
     }
 
     void FixedUpdate()
@@ -43,17 +46,45 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (transform.parent.localEulerAngles.y >= 150f)
+        //if (transform.parent.localEulerAngles.y >= 150f)
+        //{
+        //    if (!isCardPrinted)
+        //    {
+        //        idCardObject.GetComponent<PrintCard>()._printCard = true;
+        //        isCardPrinted = true;
+        //    }
+        //}
+
+        isRopeUntied = ropeObj.GetComponent<CutRope>().IsRopeUntied();
+        if(isRopeUntied==true)
+            StartCoroutine(UnlockDoor());
+
+        if (rotating)
         {
-            if (!isCardPrinted)
+            Vector3 to = new Vector3(0, 10, 0);
+            if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
             {
-                idCardObject.GetComponent<PrintCard>()._printCard = true;
-                isCardPrinted = true;
+                transform.parent.localEulerAngles = Vector3.Lerp(transform.parent.localEulerAngles, to, Time.deltaTime);
+            }
+            else
+            {
+                transform.eulerAngles = to;
+                rotating = false;
             }
         }
+        //Debug.Log("Rope Untied :"+isRopeUntied);
+    }
 
-        isCodeUnlocked = passCodePanel.GetComponent<PassCode>().IsCodeUnlocked();
-        Debug.Log(isCodeUnlocked);
+    IEnumerator UnlockDoor()
+    {
+        yield return new WaitForSeconds(5f);
+
+        if (doorUnlockedSoundPlayed == false)
+        {
+            doorUnlockedSoundPlayed = true;
+            aSources[1].Play();
+            rotating = true;
+        }
     }
 
     void OnTriggerEnter(Collider col)
@@ -65,8 +96,7 @@ public class Door : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        Debug.Log(isCodeUnlocked);
-        if (isCodeUnlocked)
+        if (isRopeUntied)
         {
             if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
             {
@@ -84,7 +114,7 @@ public class Door : MonoBehaviour
         }
         else
         {
-            GetComponent<AudioSource>().Play();
+            aSources[0].Play();
         }
     }
 
