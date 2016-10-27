@@ -104,7 +104,7 @@ public class FacebookApi : MonoBehaviour
 
         yield return userDetailsJson;
 
-        //Debug.Log(userDetailsJson.text);
+        Debug.Log(userDetailsJson.text);
 
         userObj = UserObj.CreateFromJson(userDetailsJson.text);
         user_id = userObj.id;
