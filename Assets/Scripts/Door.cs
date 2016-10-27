@@ -15,6 +15,10 @@ public class Door : MonoBehaviour
     float lastPosition = 0;
     private GameObject handObj;
 
+    public GameObject doorObj;
+    public GameObject HospitalScene;
+    public GameObject EscapeScene;
+
     //private bool isCardPrinted = false;
 
     private bool doorUnlockedSoundPlayed = false;
@@ -128,8 +132,10 @@ public class Door : MonoBehaviour
         {
             if (moveDoor)
             {
+                
                 if (transform.parent.localEulerAngles.y < 130f)
                 {
+
                     float angle = 0.0f;
                     angle = Vector3.Angle(transform.parent.position, handObj.transform.position);
                     yRot -= direction * angle * 5f * Time.deltaTime;
@@ -151,6 +157,12 @@ public class Door : MonoBehaviour
                         moveDoor = false;
                     }
                 }
+
+                if (transform.parent.localEulerAngles.y < 30f)
+                {
+                    StartCoroutine(SwitchScene(doorObj));
+                }
+
             }
             else
             {
@@ -163,6 +175,15 @@ public class Door : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    IEnumerator SwitchScene(GameObject doorObj)
+    {
+        yield return new WaitForSeconds(0.2f);
+        HospitalScene.SetActive(true);
+        doorObj.transform.parent = HospitalScene.transform;
+        EscapeScene.SetActive(false);
+        // Destroy(transform.parent.parent.gameObject);
     }
 
 }
