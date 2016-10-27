@@ -15,11 +15,14 @@ public class BreakBottle : MonoBehaviour {
     Vector3 _myVelo;
     Vector3 _lastPos;
 
+    Transform _originalParent;
+
     void Start () {
         _myVelo = Vector3.zero;
         _lastPos = transform.position;
         _myRb = GetComponent<Rigidbody>();
         Debug.Assert(_myRb != null, "Breakable Bottle lacks a RigidBody");
+        _originalParent = transform.parent;
     }
 
     void Update() {
@@ -47,7 +50,7 @@ public class BreakBottle : MonoBehaviour {
                     //} else {
                     childPiece.gameObject.SetActive(true);
                     if (childPiece.tag != Tags.BreakHeir) {
-                        childPiece.parent = null;
+                        childPiece.parent = _originalParent;
                         if (!childPiece.GetComponent<Rigidbody>()) {
                             childPiece.gameObject.AddComponent<Rigidbody>();
                         }
