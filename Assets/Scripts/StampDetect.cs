@@ -50,7 +50,7 @@ public class StampDetect : MonoBehaviour {
                 int _childIndex = other.transform.childCount;
                 GameObject _stamp = Instantiate(_sealPrefab, _sealPos, _sealRot, other.transform) as GameObject;
                 _stamp.transform.localScale = _sealPrefab.transform.localScale.x / _stamp.transform.lossyScale.x * _stamp.transform.localScale;
-                _stamp.transform.localPosition = new Vector3(_stamp.transform.localPosition.x, _childIndex * _childLayerOffset, _stamp.transform.localPosition.z);
+                _stamp.transform.localPosition = new Vector3(_stamp.transform.localPosition.x, 0.001f + _childIndex * _childLayerOffset, _stamp.transform.localPosition.z);
                 if (!other.gameObject.GetComponent<PaperParameters>().IsStampOnMe()) {
                     if (other.tag != Tags.SpecialPaper)
                     {
