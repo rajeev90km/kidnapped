@@ -14,7 +14,6 @@ public class PapersMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.position = Vector3.MoveTowards(transform.position, _des, _movementOffset * Time.deltaTime / _duration);
-        Debug.Log("Des: " + _des);
     }
 
     public void UpdateDestination() {

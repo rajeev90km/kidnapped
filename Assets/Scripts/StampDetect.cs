@@ -16,7 +16,6 @@ public class StampDetect : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("Gameobject: " + other.name);
         if (other.tag == Tags.Paper || other.tag == Tags.SpecialPaper) {
             if (IsEnteringFace(other.gameObject, gameObject)) {
                 transform.parent.gameObject.GetComponent<Stamp>().SetPointDetectFlag(_myIndex, true);
@@ -29,22 +28,20 @@ public class StampDetect : MonoBehaviour {
                     _stamp.transform.localScale = _sealPrefab.transform.localScale.x / _stamp.transform.lossyScale.x * _stamp.transform.localScale;
                     _stamp.transform.localPosition = new Vector3(_stamp.transform.localPosition.x, _childIndex * _childLayerOffset, _stamp.transform.localPosition.z);
                     if (!other.gameObject.GetComponent<PaperParameters>().IsStampOnMe()) {
-                        _papers.GetComponent<PapersMovement>().UpdateDestination();
+                        if (other.tag != Tags.SpecialPaper)
+                        {
+                            _papers.GetComponent<PapersMovement>().UpdateDestination();
+                        }
                     }
                     other.gameObject.GetComponent<PaperParameters>().StampON();
                     if (other.tag == Tags.SpecialPaper) {
-                        StartCoroutine(SwitchScene());
+                        gameObject.tag = Tags.Interactable;
+                        StartCoroutine(SwitchScene(other.gameObject));
                     }
                 } else {
                     Debug.Log("All three points have to be touched");
                 }
             }
-        }
-    }
-
-    void OnTriggerExit(Collider other) {
-        if (other.tag == Tags.Paper && other.tag == Tags.SpecialPaper) {
-            transform.parent.gameObject.GetComponent<Stamp>().SetPointDetectFlag(_myIndex, false);
         }
     }
 
@@ -56,9 +53,11 @@ public class StampDetect : MonoBehaviour {
         }
     }
 
-    IEnumerator SwitchScene() {
+    IEnumerator SwitchScene(GameObject _specialPaper) {
         yield return new WaitForSeconds(0.2f);
         EscapeScene.SetActive(true);
+
+        _specialPaper.transform.parent = EscapeScene.transform;
         StampScene.SetActive(false);
         Destroy(transform.parent.parent.gameObject);
     }

@@ -23,6 +23,9 @@ public class Stamp : MonoBehaviour {
 
     public bool _isAllPointsDetected() {
         if (_point1Dected && _point2Dected && _point3Dected) {
+            _point1Dected = false;
+            _point2Dected = false;
+            _point3Dected = false;
             return true;
         } else {
             return false;
