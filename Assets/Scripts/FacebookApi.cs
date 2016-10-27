@@ -68,7 +68,7 @@ public class FacebookApi : MonoBehaviour
 
        // Debug.Log(access_code);
 
-        StartCoroutine(retrieveAccessToken());
+        StartCoroutine(retrieveUserDetails());
     }
 
 
@@ -100,7 +100,7 @@ public class FacebookApi : MonoBehaviour
      */
     public IEnumerator retrieveUserDetails()
     {
-        WWW userDetailsJson = new WWW(String.Format("https://graph.facebook.com/v2.8/me?fields=first_name%2Clast_name%2Cgender%2Cage_range%2Cid&access_token={0}", access_token));
+        WWW userDetailsJson = new WWW("http://joesbabysitting.com/getLatestUser.php");
 
         yield return userDetailsJson;
 
@@ -114,7 +114,7 @@ public class FacebookApi : MonoBehaviour
         //SET NAME TO ID CARD
         idCardName.text = userObj.first_name + "\n" + userObj.last_name;
 
-        StartCoroutine(retrieveUserPicture());
+        StartCoroutine(retrieveUserPicture(userObj.picture_url));
 
     }
 
@@ -125,9 +125,10 @@ public class FacebookApi : MonoBehaviour
     /* 
      * Retrieve user picture
      */
-    public IEnumerator retrieveUserPicture()
+    public IEnumerator retrieveUserPicture(string picture_url)
     {
-        WWW profilePicture = new WWW(String.Format("http://graph.facebook.com/{0}/picture?width=256&height=256", user_id));
+        Debug.Log(picture_url);
+        WWW profilePicture = new WWW(picture_url);
         yield return profilePicture;
 
         //Debug.Log(profilePicture.text);
