@@ -66,16 +66,18 @@ public class Door : MonoBehaviour
         if (rotating)
         {
             Vector3 to = new Vector3(0, 10, 0);
-            if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
+            if (Vector3.Distance(transform.eulerAngles, to) > 0.1f)
             {
                 transform.parent.localEulerAngles = Vector3.Lerp(transform.parent.localEulerAngles, to, Time.deltaTime);
             }
-            else
+            if(transform.parent.localEulerAngles.y>9f)
             {
                 transform.eulerAngles = to;
                 rotating = false;
             }
         }
+
+        Debug.Log(rotating);
         //Debug.Log("Rope Untied :"+isRopeUntied);
     }
 
@@ -133,7 +135,7 @@ public class Door : MonoBehaviour
             if (moveDoor)
             {
                 
-                if (transform.parent.localEulerAngles.y < 130f)
+                if (transform.parent.localEulerAngles.y < 145f)
                 {
 
                     float angle = 0.0f;
@@ -144,7 +146,7 @@ public class Door : MonoBehaviour
                     //Debug.Log(Vector3.Distance(transform.position, handObj.transform.position));
                     if (Vector3.Distance(transform.position, handObj.transform.position) > 0.5f)
                     {
-                        if (transform.parent.localEulerAngles.y < 130f)
+                        if (transform.parent.localEulerAngles.y < 145)
                             transform.parent.localEulerAngles = new Vector3(0, -yRot, 0);
                     }
                     else
@@ -158,7 +160,7 @@ public class Door : MonoBehaviour
                     }
                 }
 
-                if (transform.parent.localEulerAngles.y < 30f)
+                if (transform.parent.localEulerAngles.y > 30f)
                 {
                     StartCoroutine(SwitchScene(doorObj));
                 }
