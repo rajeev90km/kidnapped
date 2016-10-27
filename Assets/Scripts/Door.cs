@@ -160,7 +160,7 @@ public class Door : MonoBehaviour
                     }
                 }
 
-                if (transform.parent.localEulerAngles.y > 30f)
+                if (transform.parent.localEulerAngles.y > 20f)
                 {
                     StartCoroutine(SwitchScene(doorObj));
                 }
