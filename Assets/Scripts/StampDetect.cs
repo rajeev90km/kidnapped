@@ -87,8 +87,8 @@ public class StampDetect : MonoBehaviour {
     IEnumerator SwitchScene(GameObject _specialPaper) {
         yield return new WaitForSeconds(0.2f);
         EscapeScene.SetActive(true);
-
         _specialPaper.transform.parent = EscapeScene.transform;
+        _specialPaper.tag = Tags.Interactable;
         StampScene.SetActive(false);
         Destroy(transform.parent.parent.gameObject);
     }
