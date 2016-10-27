@@ -59,7 +59,7 @@ public class StampDetect : MonoBehaviour {
                 }
                 other.gameObject.GetComponent<PaperParameters>().StampON();
                 if (other.tag == Tags.SpecialPaper) {
-                    other.tag = Tags.Interactable;
+                    gameObject.tag = Tags.Interactable;
                     StartCoroutine(SwitchScene(other.gameObject));
                 }
             } else {
