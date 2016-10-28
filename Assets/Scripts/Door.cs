@@ -77,7 +77,7 @@ public class Door : MonoBehaviour
             }
         }
 
-        Debug.Log(rotating);
+        //Debug.Log(rotating);
         //Debug.Log("Rope Untied :"+isRopeUntied);
     }
 
