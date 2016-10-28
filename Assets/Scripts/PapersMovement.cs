@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PapersMovement : MonoBehaviour {
     public float _movementOffset = 0.6f;
-    public float _duration = 1.0f;
+    public float _duration = 3.0f;
     AudioSource _audio;
 
     Vector3 _des;

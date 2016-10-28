@@ -39,7 +39,7 @@ public class Blink : MonoBehaviour {
     {
         if (!stopBlinking)
         {
-            yield return new WaitForSeconds(2f);
+            //yield return new WaitForSeconds(2f);
             ctr++;
             transform.localPosition = new Vector3(-0.11f, transform.localPosition.y + (direction * Mathf.Sin(Time.time - startTime) /5000 * ctr), 0.06f);
             yield return new WaitForSeconds(15f);
