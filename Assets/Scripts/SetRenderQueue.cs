@@ -14,7 +14,7 @@ public class SetRenderQueue : MonoBehaviour
 {
 
     [SerializeField]
-    protected int[] m_queues = new int[] { 3000 };
+    protected int[] m_queues = new int[] { 3010 };
 
     protected void Awake()
     {
