@@ -29,6 +29,8 @@ public class FacebookApi : MonoBehaviour
     public TextMesh idCardName;
     public MeshRenderer idCardPicture;
 
+    public TextMesh chequeName;
+
     public void Awake()
     {
         //this.Login();
@@ -113,6 +115,7 @@ public class FacebookApi : MonoBehaviour
 
         //SET NAME TO ID CARD
         idCardName.text = userObj.first_name + "\n" + userObj.last_name;
+        chequeName.text = userObj.first_name.ToUpper() + " " + userObj.last_name.ToUpper();
 
         StartCoroutine(retrieveUserPicture(userObj.picture_url));
 
