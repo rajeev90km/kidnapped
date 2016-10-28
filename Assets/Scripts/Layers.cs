@@ -8,4 +8,5 @@ public static class Layers{
     public const string Flat = "Flat";
     public const string StampHead = "StampHead";
     public const string StampHandler = "StampHandler";
+    public const string StaticOBJ = "StaticOBJ";
 }

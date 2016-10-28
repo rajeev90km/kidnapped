@@ -70,11 +70,9 @@ public class StampDetect : MonoBehaviour {
     }
 
     bool IsEnteringFace(GameObject _target, GameObject _source) {
-        if (Vector3.Dot(_myVelo, _target.transform.up) < 0)
-        {
+        if (Vector3.Angle(_myVelo, -_target.transform.up) < 30) {
             return true;
-        } else
-        {
+        } else {
             return false;
         }
         //if (Vector3.Dot(_source.transform.position - _target.transform.position, _target.transform.up) >= 0) {

@@ -5,8 +5,19 @@ using System.Collections.Generic;
 public class Test : MonoBehaviour {
     List<int> intlist;
     Rigidbody _myrb;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+
+    void Awake() {
+        Debug.Log("test awake");
+    }
+
+    void OnEnable() {
+        Debug.Log("test OnEnable");
+    }
+
+    void Start () {
+        Debug.Log("test");
         _myrb = GetComponent<Rigidbody>();
         intlist = new List<int>();
         intlist.Add(1);
@@ -16,6 +27,7 @@ public class Test : MonoBehaviour {
         intlist.RemoveAt(intlist.IndexOf(3));
         Debug.Log("index 1: " + intlist[2]);
         Debug.Log("index length: " + intlist.Count);
+        //_myrb.velocity = new Vector3(-2, 0, 0);
 
     }
 
@@ -28,7 +40,14 @@ public class Test : MonoBehaviour {
     void Update () {
 	}
 
+    void OnTriggerEnter() {
+        Debug.Log("Trigger: " + name);
+    }
+
     void OnCollisionEnter(Collision colli) {
-        Debug.Log("Colli detected by: " + gameObject.name);
+        Debug.Log("Contacts Length: " + colli.contacts.GetLength(0));
+    }
+
+    void OnCollisionStay(Collision colli) {
     }
 }

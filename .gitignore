@@ -1,5 +1,7 @@
 /Assets/test/aa.meta
 /Assets/test.meta
+/Assets/Scripts/Test*
+/Assets/Shaders/TestShader.shader*
 /Assets/Sound/resources/
 /[Ll]ibrary/
 /[Tt]emp/
