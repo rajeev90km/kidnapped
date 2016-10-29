@@ -83,7 +83,7 @@ public class Door : MonoBehaviour
 
     IEnumerator UnlockDoor()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         if (doorUnlockedSoundPlayed == false)
         {
