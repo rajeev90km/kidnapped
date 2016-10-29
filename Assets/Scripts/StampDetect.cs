@@ -40,7 +40,7 @@ public class StampDetect : MonoBehaviour {
             if (IsEnteringFace(other.gameObject, gameObject)) {
             transform.parent.gameObject.GetComponent<Stamp>().SetPointDetectFlag(_myIndex, true);
             if (transform.parent.GetComponent<Stamp>()._isAllPointsDetected()) {
-                Quaternion _sealRot = Quaternion.Euler(0, transform.parent.parent.rotation.eulerAngles.y, 0);
+                Quaternion _sealRot = Quaternion.Euler(0, transform.parent.parent.parent.rotation.eulerAngles.y - 180, 0);
                 Vector3 _sealHeadPos = transform.parent.position;
                 Vector3 _sealPos = _sealHeadPos - Vector3.Dot(_sealHeadPos - other.transform.position, other.transform.up) * other.transform.up;
                 int _childIndex = other.transform.childCount;
