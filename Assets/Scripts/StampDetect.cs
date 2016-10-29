@@ -8,6 +8,7 @@ public class StampDetect : MonoBehaviour {
     public GameObject _papers;
     public GameObject StampScene;
     public GameObject EscapeScene;
+    public GameObject EscapeHand;
 
     float _childLayerOffset = 0.0001f;
 
@@ -83,6 +84,7 @@ public class StampDetect : MonoBehaviour {
         _specialPaper.transform.parent = EscapeScene.transform;
         _specialPaper.tag = Tags.Interactable;
         StampScene.SetActive(false);
+        EscapeHand.SetActive(true);
         Destroy(transform.parent.parent.gameObject);
     }
 }
