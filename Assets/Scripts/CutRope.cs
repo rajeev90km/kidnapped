@@ -31,7 +31,7 @@ public class CutRope : MonoBehaviour {
 
     IEnumerator UnlockDoor()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(17f);
     }
 
     public bool IsRopeUntied()
