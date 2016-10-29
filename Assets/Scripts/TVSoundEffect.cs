@@ -5,6 +5,7 @@ public class TVSoundEffect : MonoBehaviour {
 
     public AudioClip _TVBGM;
     public AudioClip _TVNews;
+    public GameObject _Credits;
 
     AudioSource _TVBGMSource;
     public AudioSource _TVNewsSource;
@@ -45,5 +46,12 @@ public class TVSoundEffect : MonoBehaviour {
             _TVNewsSource.clip = _TVNews;
             _TVNewsSource.Play();
         }
+        StartCoroutine(StartCredits());
+    }
+
+    IEnumerator StartCredits()
+    {
+        yield return new WaitForSeconds(50f);
+        _Credits.SetActive(true);
     }
 }
