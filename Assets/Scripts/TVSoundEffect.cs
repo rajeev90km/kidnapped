@@ -9,13 +9,16 @@ public class TVSoundEffect : MonoBehaviour {
     AudioSource _TVBGMSource;
     public AudioSource _TVNewsSource;
 
-    public float _fadeOutFactor = 1f;
+    public float _fadeOutTime;
     bool _isFadeInOut;
-    float _silenceThreshold = 0.01f;
+    float _silenceThreshold = 0.001f;
+    float _defaultVolume;
 	// Use this for initialization
 	void Start () {
+        _fadeOutTime = 5.0f;
         _isFadeInOut = false;
         _TVBGMSource = GetComponent<AudioSource>();
+        _defaultVolume = _TVBGMSource.volume;
         PlayBGM();
 	}
 	
@@ -23,7 +26,7 @@ public class TVSoundEffect : MonoBehaviour {
 	void Update () {
 	    if (_isFadeInOut) {
             if (_TVBGMSource.volume > 0) {
-                _TVBGMSource.volume /= _fadeOutFactor;
+                _TVBGMSource.volume -= _defaultVolume * Time.deltaTime / _fadeOutTime;
                 if (_TVBGMSource.volume < _silenceThreshold) {
                     _TVBGMSource.volume = 0.0f;
                 }

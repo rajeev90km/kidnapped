@@ -25,8 +25,8 @@ public class Blink : MonoBehaviour {
        transform.parent = cameraObj.transform;
        transform.localPosition = new Vector3(-0.11f, (direction * 0.996f), 0.06f);
         transform.localEulerAngles = new Vector3(0,0,0);
-        cameraBlur = cameraObj.GetComponent<Blur>();
-        cameraBlur.enabled = true;
+        //cameraBlur = cameraObj.GetComponent<Blur>();
+        //cameraBlur.enabled = true;
     }
 	
 	// Update is called once per frame

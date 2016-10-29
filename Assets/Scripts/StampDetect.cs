@@ -36,11 +36,6 @@ public class StampDetect : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.tag == Tags.Paper || other.tag == Tags.SpecialPaper) {
-            Debug.Log("detected: " + gameObject.name);
-            if (IsEnteringFace(other.gameObject, gameObject))
-            {
-                Debug.Log("Also from the face");
-            }
             if (IsEnteringFace(other.gameObject, gameObject)) {
             transform.parent.gameObject.GetComponent<Stamp>().SetPointDetectFlag(_myIndex, true);
             if (transform.parent.GetComponent<Stamp>()._isAllPointsDetected()) {
