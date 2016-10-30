@@ -42,7 +42,6 @@ public class BreakBottle : MonoBehaviour {
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == Tags.Tough) {
             if (_myVelo.magnitude > _velocityThreshold) {
-                Debug.Log("Broken: " + _myVelo.magnitude);
                 _bottleSounds.PlayBreakingSound();
                 foreach (Transform childPiece in transform) {
                     //if (childPiece.gameObject.activeSelf) {

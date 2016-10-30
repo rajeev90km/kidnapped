@@ -22,6 +22,8 @@ public class Door : MonoBehaviour
     public GameObject HospitalScene;
     public GameObject EscapeScene;
 
+    bool _oneTimeCall;
+
     //private bool isCardPrinted = false;
 
     private bool doorUnlockedSoundPlayed = false;
@@ -42,6 +44,7 @@ public class Door : MonoBehaviour
 
     void Start()
     {
+        _oneTimeCall = false;
         StartCoroutine(doorMover());
     }
 
@@ -165,7 +168,11 @@ public class Door : MonoBehaviour
 
                 if (transform.parent.localEulerAngles.y > 20f)
                 {
-                    StartCoroutine(SwitchScene(doorObj));
+                    if (!_oneTimeCall)
+                    {
+                        StartCoroutine(SwitchScene(doorObj));
+                        _oneTimeCall = true;
+                    }
                 }
 
             }
