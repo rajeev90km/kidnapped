@@ -41,7 +41,7 @@ public class Blink : MonoBehaviour {
         {
             //yield return new WaitForSeconds(2f);
             ctr++;
-            transform.localPosition = new Vector3(-0.11f, transform.localPosition.y + (direction * Mathf.Sin(Time.time - startTime) /5000 * ctr), 0.06f);
+            transform.localPosition = new Vector3(-0.11f, transform.localPosition.y + (direction * Mathf.Sin(Time.time - startTime) /10000 * ctr), 0.06f);
             yield return new WaitForSeconds(15f);
             //cameraBlur.enabled = false;
             stopBlinking = true;
