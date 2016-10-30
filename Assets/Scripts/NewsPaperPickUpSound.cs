@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NewsPaperPickUpSound : MonoBehaviour {
     public TVSoundEffect _tvSound;
+    public GameObject _kid;
     bool _oneTime = false;
     void Start()
     {
@@ -14,6 +15,7 @@ public class NewsPaperPickUpSound : MonoBehaviour {
             if (!_oneTime)
             {
                 _tvSound.PlayNews();
+                _kid.GetComponent<Animator>().SetBool("isResting", true);
                 _oneTime = true;
             }
         }
