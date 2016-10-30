@@ -5,6 +5,9 @@ using System.Collections;
 public class Door : MonoBehaviour
 {
 
+    public GameObject _oneHand;
+    public GameObject _otherHand;
+
     public GameObject idCardObject;
 
     private bool moveDoor = false;
@@ -182,6 +185,8 @@ public class Door : MonoBehaviour
     IEnumerator SwitchScene(GameObject doorObj)
     {
         yield return new WaitForSeconds(0.2f);
+        _oneHand.GetComponent<InteractableItems>().ResetMyChilds();
+        _otherHand.GetComponent<InteractableItems>().ResetMyChilds();
         HospitalScene.SetActive(true);
         doorObj.transform.parent = HospitalScene.transform;
         EscapeScene.SetActive(false);

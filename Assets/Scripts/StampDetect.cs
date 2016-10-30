@@ -67,7 +67,13 @@ public class StampDetect : MonoBehaviour {
 
     bool IsEnteringFace(GameObject _target, GameObject _source) {
         if (Vector3.Angle(_myVelo, -_target.transform.up) < 30) {
-            return true;
+            if (IsStampFacingDown(_target))
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         } else {
             return false;
         }
@@ -76,6 +82,17 @@ public class StampDetect : MonoBehaviour {
         //} else {
         //    return false;
         //}
+    }
+
+    bool IsStampFacingDown(GameObject _target)
+    {
+        if (Vector3.Angle(transform.parent.position - transform.parent.parent.position, -_target.transform.up) < 30)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
     IEnumerator SwitchScene(GameObject _specialPaper) {

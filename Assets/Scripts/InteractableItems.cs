@@ -147,4 +147,29 @@ public class InteractableItems : MonoBehaviour {
             Debug.Log(grabbedObj.name);
         }
     }
+
+    public void ResetMyChilds()
+    {
+        _grabbed = null;
+        _hovereds.Clear();
+        _hoveredParents.Clear();
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    public void ResetMyChild(GameObject child)
+    {
+        if (_grabbed == child)
+        {
+            _grabbed = null;
+        }
+        if (_hovereds.Contains(child))
+        {
+            child.transform.parent = _hoveredParents[_hovereds.IndexOf(child)].transform;
+            _hoveredParents.RemoveAt(_hovereds.IndexOf(child));
+            _hovereds.Remove(child);
+            child.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        }
+    }
 }

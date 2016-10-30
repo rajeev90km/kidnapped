@@ -14,7 +14,8 @@ public class PaperParameters : MonoBehaviour {
 
     public void StampON() {
         _isStampOnMe = true;
-        _audio.Play();
+        if (!_audio.isPlaying)
+            _audio.Play();
     }
 
     public bool IsStampOnMe() {
