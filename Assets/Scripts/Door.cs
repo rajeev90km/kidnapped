@@ -66,8 +66,11 @@ public class Door : MonoBehaviour
         //}
 
         isRopeUntied = ropeObj.GetComponent<CutRope>().IsRopeUntied();
-        if(isRopeUntied==true)
+        if (isRopeUntied == true)
+        {
+            
             StartCoroutine(UnlockDoor());
+        }
 
         if (rotating)
         {
