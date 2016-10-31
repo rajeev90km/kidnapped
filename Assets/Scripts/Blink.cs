@@ -23,7 +23,7 @@ public class Blink : MonoBehaviour {
     void Start () {
        cameraObj = GameObject.Find("Camera (eye)");
        transform.parent = cameraObj.transform;
-       transform.localPosition = new Vector3(-0.11f, (direction * 0.762f), 0.06f);
+       transform.localPosition = new Vector3(-0.11f, (direction * 0.55f), 0.06f);
         transform.localEulerAngles = new Vector3(0,0,0);
         //cameraBlur = cameraObj.GetComponent<Blur>();
         //cameraBlur.enabled = true;
@@ -42,7 +42,7 @@ public class Blink : MonoBehaviour {
             yield return new WaitForSeconds(7f);
             ctr++;
             transform.localPosition = new Vector3(-0.11f, transform.localPosition.y + (direction * Mathf.Sin(Time.time - startTime) /10000 * ctr), 0.06f);
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
             //cameraBlur.enabled = false;
             stopBlinking = true;
             Destroy(gameObject,2f);
