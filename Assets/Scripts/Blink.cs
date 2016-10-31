@@ -42,7 +42,7 @@ public class Blink : MonoBehaviour {
             yield return new WaitForSeconds(7f);
             ctr++;
             transform.localPosition = new Vector3(-0.11f, transform.localPosition.y + (direction * Mathf.Sin(Time.time - startTime) /10000 * ctr), 0.06f);
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(5f);
             //cameraBlur.enabled = false;
             stopBlinking = true;
             Destroy(gameObject,2f);

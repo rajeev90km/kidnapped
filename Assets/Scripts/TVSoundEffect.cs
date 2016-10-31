@@ -51,7 +51,7 @@ public class TVSoundEffect : MonoBehaviour {
 
     IEnumerator StartCredits()
     {
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(15f);
         _Credits.SetActive(true);
     }
 }
