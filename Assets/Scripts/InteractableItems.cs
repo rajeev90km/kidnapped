@@ -7,6 +7,7 @@ public class InteractableItems : MonoBehaviour {
     // TrackedController ancestor (contains button events)
     private SteamVR_TrackedController _trackedController;
 
+    public GameObject EscapeScene;
     // Object (if any) in grab range and not currently grabbed
     public List<GameObject> _hovereds;
     public List<GameObject> _hoveredParents;
@@ -103,7 +104,9 @@ public class InteractableItems : MonoBehaviour {
                 _grabbed.transform.parent = _hoveredParents[_hovereds.IndexOf(_grabbed)].transform;
             } else
             {
-                _grabbed.transform.parent = null;
+                Debug.Log("Yohooo");
+                _grabbed.transform.parent = EscapeScene.transform;
+                //_grabbed.transform.parent = null;
             }
             body.velocity = SteamVR_Controller.Input((int)_trackedController.controllerIndex).velocity;
             body.angularVelocity = SteamVR_Controller.Input((int)_trackedController.controllerIndex).angularVelocity;
