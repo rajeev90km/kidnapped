@@ -26,6 +26,7 @@ public class CreditsController : MonoBehaviour {
     public Text _artistText;
     public Text _producerText;
     public Text _soundActingText;
+    public Text _soundActingMemberText;
     public Text _endingText;
     private float _displayAlpha = 0;
 
@@ -43,6 +44,7 @@ public class CreditsController : MonoBehaviour {
         UpdateColor(_yiwenPhoto);
         UpdateColor(_producerText);
         UpdateColor(_soundActingText);
+        UpdateColor(_soundActingMemberText);
         UpdateColor(_endingText);
         StartCoroutine(fadeInProgrammer());
         StartCoroutine(fadeOutProgrammer());
@@ -221,6 +223,7 @@ public class CreditsController : MonoBehaviour {
                 _soundActingFadeIn = false;
             }
             UpdateColor(_soundActingText);
+            UpdateColor(_soundActingMemberText);
         }
 
         if (_soundActingFadeOut)
@@ -232,6 +235,7 @@ public class CreditsController : MonoBehaviour {
                 _soundActingFadeOut = false;
             }
             UpdateColor(_soundActingText);
+            UpdateColor(_soundActingMemberText);
         }
 
         if (_endingTextFadeIn)
