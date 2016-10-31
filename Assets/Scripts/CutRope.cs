@@ -22,10 +22,14 @@ public class CutRope : MonoBehaviour {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(Layers.Sharp) && other.transform.parent.name == "attach")
         {
-            GetComponent<Animator>().SetBool("RopeCut", true);
             
-            StartCoroutine(SetFree());
-            transform.parent.parent.GetComponent<FakeHand>().SetChairDestroyedFlag();
+            if (!isRopeUntied)
+            {
+                GetComponent<Animator>().SetBool("RopeCut", true);
+                StartCoroutine(SetFree());
+                transform.parent.parent.GetComponent<FakeHand>().SetChairDestroyedFlag();
+            }
+
 
         }
     }
@@ -42,6 +46,11 @@ public class CutRope : MonoBehaviour {
 
     IEnumerator SetFree()
     {
+        if (!_audio.isPlaying)
+        {
+            _audio.Play();
+        }
+        
         yield return new WaitForSeconds(2f);
         isRopeUntied = true;
         GetComponent<Rigidbody>().useGravity = true;
