@@ -15,7 +15,6 @@ public class CreditsController : MonoBehaviour {
     public bool _soundActingFadeIn = false;
     public bool _soundActingFadeOut = false;
     public bool _endingTextFadeIn = false;
-    public bool _endingTextFadeOut = false;
     public float MIN_SUN_HEIGHT;
 
     public Image _joePhoto;
@@ -54,7 +53,6 @@ public class CreditsController : MonoBehaviour {
         StartCoroutine(fadeInVoiceActing());
         StartCoroutine(fadeOutVoiceActing());
         StartCoroutine(fadeInEnding());
-        StartCoroutine(fadeOutEnding());
     }
 
     void UpdateColor(Text target)
@@ -122,12 +120,6 @@ public class CreditsController : MonoBehaviour {
     {
         yield return new WaitForSeconds(32f);
         _endingTextFadeIn = true;
-    }
-
-    IEnumerator fadeOutEnding()
-    {
-        yield return new WaitForSeconds(38f);
-        _endingTextFadeOut = true;
     }
 
 
@@ -253,16 +245,6 @@ public class CreditsController : MonoBehaviour {
             UpdateColor(_endingText);
         }
 
-        if (_endingTextFadeOut)
-        {
-            _displayAlpha -= 0.01f;
-            if (_displayAlpha < 0)
-            {
-                _displayAlpha = 0;
-                _endingTextFadeOut = false;
-            }
-            UpdateColor(_endingText);
-        }
 
     }
 
