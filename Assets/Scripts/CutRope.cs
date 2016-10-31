@@ -6,7 +6,7 @@ public class CutRope : MonoBehaviour {
     public GameObject _chair;
     private AudioSource _audio;
 
-    private bool isRopeUntied = false;
+    public bool isRopeUntied = false;
 
 	// Use this for initialization
 	void Start () {
