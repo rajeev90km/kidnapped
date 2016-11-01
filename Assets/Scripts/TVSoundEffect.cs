@@ -41,17 +41,18 @@ public class TVSoundEffect : MonoBehaviour {
     }
 
     public void PlayNews() {
-        if (_TVBGMSource.isPlaying) {
+        if (_TVBGMSource.isPlaying && _TVBGMSource.clip == _TVBGM) {
             _isFadeInOut = true;
             _TVNewsSource.clip = _TVNews;
             _TVNewsSource.Play();
+            StartCoroutine(StartCredits());
         }
-        StartCoroutine(StartCredits());
+        
     }
 
     IEnumerator StartCredits()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(10f);
         _Credits.SetActive(true);
     }
 }
