@@ -92,7 +92,7 @@ public class Door : MonoBehaviour
 
     IEnumerator UnlockDoor()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(20f);
 
         if (doorUnlockedSoundPlayed == false)
         {
