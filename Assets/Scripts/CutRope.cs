@@ -51,10 +51,11 @@ public class CutRope : MonoBehaviour {
             _audio.Play();
         }
         
+        
+        //GetComponent<Rigidbody>().useGravity = true;
+        //GetComponent<Rigidbody>().isKinematic = false;
         yield return new WaitForSeconds(2f);
         isRopeUntied = true;
-        GetComponent<Rigidbody>().useGravity = true;
-        GetComponent<Rigidbody>().isKinematic = false;
         yield return new WaitForSeconds(2f);
         _chair.SetActive(false);
     }

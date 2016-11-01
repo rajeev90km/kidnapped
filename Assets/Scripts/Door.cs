@@ -92,7 +92,7 @@ public class Door : MonoBehaviour
 
     IEnumerator UnlockDoor()
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(15f);
 
         if (doorUnlockedSoundPlayed == false)
         {
@@ -111,7 +111,7 @@ public class Door : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (isRopeUntied)
+        if (isRopeUntied && doorUnlockedSoundPlayed)
         {
             if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
             {
