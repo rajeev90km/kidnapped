@@ -128,6 +128,7 @@ public class InteractableItems : MonoBehaviour {
 
     public void SetGrabbedParent(GameObject _originParent)
     {
+        Debug.Log("SetGrabbedParent is called");
         _hoveredParents[_hovereds.IndexOf(_grabbed)] = _originParent;
     }
 
@@ -153,6 +154,8 @@ public class InteractableItems : MonoBehaviour {
 
     public void ResetMyChilds()
     {
+
+        Debug.Log("Reset my childs is called");
         _grabbed = null;
         _hovereds.Clear();
         _hoveredParents.Clear();
@@ -166,13 +169,15 @@ public class InteractableItems : MonoBehaviour {
         if (_grabbed == child)
         {
             _grabbed = null;
+            if (_hovereds.Contains(child))
+            {
+                Debug.Log("Reset my child is called");
+                child.transform.parent = _hoveredParents[_hovereds.IndexOf(child)].transform;
+                _hoveredParents.RemoveAt(_hovereds.IndexOf(child));
+                _hovereds.Remove(child);
+                child.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            }
         }
-        if (_hovereds.Contains(child))
-        {
-            child.transform.parent = _hoveredParents[_hovereds.IndexOf(child)].transform;
-            _hoveredParents.RemoveAt(_hovereds.IndexOf(child));
-            _hovereds.Remove(child);
-            child.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        }
+        
     }
 }
